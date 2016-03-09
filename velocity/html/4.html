@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .myClass{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<!--<div>Hello <span>World</span></div>-->
+<!--<p>test</p>-->
+<div>
+    A message will load here shortly...
+</div>
+</body>
+<script src="../js/jquery-1.9.1.min.js"></script>
+<script src="../js/velocity.min.js"></script>
+<script src="../js/jquery.blast.min.js"></script>
+<script>
+//    $('div').blast({
+//        delimiter:'character',
+////        customClass:'myClass',
+//        generateValueClass:true
+//    });
+//    $('p').blast({
+//        delimiter:'character',
+//        tag:'div'
+//    });
+//    setTimeout(function(){
+//        $('div').blast(false);
+//    },2000);
+//    $('div').html('This is our new message.')
+//            .blast({
+//                delimiter:'character'
+//            })
+//            .css('opacity',0)
+//            .velocity('fadeIn',{
+//                stagger:50
+//            });
+//    $('div .blast').velocity(
+//            'fadeOut',
+//            {
+//                stagger:50,
+//                backwards:true,
+//                complete:function(){
+//                    $('div')
+//                            .html('This is our old message.')
+//                            .blast({
+//                                delimiter:'character'
+//                            })
+//                            .css('opacity',0)
+//                            .velocity({
+//                                opacity:1
+//                            },{
+//                                stagger:50
+//                            });
+//                }
+//            }
+//    );
+
+//    $('div').blast({delimiter:'word'})
+//            .eq(2)
+//            .velocity({opacity:0},function(){
+//                $(this).text('running');
+//            })
+//            .velocity({opacity:1});
+
+    $('div').blast({delimiter:'character'}).each(function(i,element){
+        console.log(element)
+    });
+</script>
+</html>

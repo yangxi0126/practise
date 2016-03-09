@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body{
+            background: #060b14;
+            overflow: hidden;
+        }
+        #container{
+            position: relative;
+        }
+        .circle{
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 30px;
+            background-color: #4bc2f1;
+        }
+    </style>
+</head>
+<body>
+<div id="container"></div>
+</body>
+<script src="../js/jquery-1.9.1.min.js"></script>
+<script src="../js/velocity.min.js"></script>
+<script src="../js/velocity.ui.min.js"></script>
+<script>
+    function r(min,max){
+        return Math.floor(Math.random()*(max-min+1))+min;
+    }
+
+    var screenWidth=window.screen.availWidth;
+    var screenHeight=window.screen.availHeight;
+    var translateZMin=-725,
+        translateZMax=600;
+    var circleCount=150,
+        circlesHtml='',
+        $circles='',
+        $container=$('#container');
+    for(var i=0;i<circleCount;i++){
+        circlesHtml+='<div class="circle"></div>';
+    }
+    $circles=$(circlesHtml);
+    $circles.appendTo($container)
+            .velocity({
+                opacity:[
+                        function(){
+                            return Math.random();
+                        },
+                        function(){
+                            return Math.random()+0.1;
+                        }
+                ],
+                translateX:[
+                        function(){
+                            return '+='+r(-screenWidth/2.5,screenWidth/2.5);
+                        },
+                        function(){
+                            return r(0,screenWidth);
+                        }
+                ],
+                translateY:[
+                    function(){
+                        return '+='+r(-screenHeight/2.75,screenHeight/2.75);
+                    },
+                    function(){
+                        return r(0,screenHeight);
+                    }
+                ]
+            },{
+                duration:6000,
+                loop:true
+            });
+</script>
+</html>

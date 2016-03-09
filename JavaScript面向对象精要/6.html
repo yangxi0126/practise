@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+<script>
+//    var yourObject=(function(){
+//        //一些私有属性
+//        return {
+//            //返回值
+//        };
+//    }());
+
+//    var person=(function () {
+//        var age=25;
+//        return {
+//            name:'Nicholas',
+//            getAge:function(){
+//                return age;
+//            },
+//            growOlder:function(){
+//                age++;
+//            }
+//        };
+//    }());
+//    console.log(person.name);
+//    console.log(person.getAge());
+//    person.age=100;
+//    console.log(person.getAge());
+//    person.growOlder();
+//    console.log(person.getAge());
+//    console.log(person.age);
+
+//    var person=(function(){
+//        var age=25;
+//        function getAge(){
+//            return age;
+//        }
+//        function growOlder(){
+//            age++;
+//        }
+//        return {
+//            name:'Nicholas',
+//            getAge:getAge,
+//            growOlder:growOlder
+//        };
+//    }());
+//    console.log(person.name);
+//    console.log(person.getAge());
+//    person.age=100;
+//    console.log(person.getAge());
+//    person.growOlder();
+//    console.log(person.getAge());
+//    console.log(person.age);
+
+//    function Person(name){
+//        var age=25;
+//        this.name=name;
+//        this.getAge=function(){
+//            return age;
+//        };
+//        this.growOlder=function(){
+//            age++;
+//        };
+//    }
+//    var person=new Person('Nicholas');
+//    console.log(person.name);
+//    console.log(person.getAge());
+//    person.age=100;
+//    person.growOlder();
+//    console.log(person.getAge());
+
+//    function Person(name){
+//        this.age=25;  //此时age是所有实例都有的属性，但是，所有实例的age值不一定都相等，因为在每一次实例化对象的时候，age会被设置为25
+////        var age=25;
+//        this.name=name;
+//    }
+//    Person.prototype.getAge=function(){
+//        return this.age;  //构造函数var age=25;时，此处是undefined，因为用了var，age就变成构造函数的私有数据，不是每个实例的私有数据
+//    };
+//    Person.prototype.growOlder=function(){
+//        this.age++;
+//    };
+//    var person=new Person('Nicholas');
+//    console.log(person.name);
+//    console.log(person.age);
+//    person.growOlder();
+//    console.log(person.age);
+//    var person2=new Person('test');
+//    console.log(person2.age);
+
+//    var Person=(function(){
+//        var age=25;  //此处age是函数的私有数据
+//        function InnerPerson(name){
+//            this.name=name;
+//        }
+//        InnerPerson.prototype.getAge=function(){
+//            return age;  //返回的是私有数据，这里每个实例化公用同一个age，age值相等
+//        };
+//        InnerPerson.prototype.growOlder=function(){
+//            age++;  //私有数据自增
+//        };
+//        return InnerPerson;
+//    }());
+//    var person1=new Person('Nicholas');
+//    var person2=new Person('Greg');
+//    console.log(person1.name);
+//    console.log(person1.getAge());
+//    console.log(person2.name);
+//    console.log(person2.getAge());
+//    person1.growOlder();
+//    console.log(person1.getAge());
+//    console.log(person2.getAge());
+
+//    function mixin(receiver,supplier){  //该函数是将一个JavaScript对象内已经存在的行为添加到另一个对象中去
+//        for(var property in supplier){
+//            if(supplier.hasOwnProperty(property)){
+//                receiver[property]=supplier[property];
+//            }
+//        }
+//    }
+
+/*    function EventTarget(){
+
+    }
+    EventTarget.prototype={
+        constructor:EventTarget,  //构造器指向自身
+        addListener:function(type,listener){
+            if(!this.hasOwnProperty('_listeners')){
+                this._listeners=[];
+            }
+            if(typeof this._listeners[type] == undefined){
+                this._listeners[type]=[];
+            }
+            this._listeners[type].push(listener);
+        },
+        fire:function(event){
+            if(!event.target){
+                event.target=this;
+            }
+            if(!event.type){
+                throw new Error('Event object missing "type" property.');
+            }
+            if(this._listeners&&this._listeners[event.type] instanceof Array){
+                var listeners=this._listeners[event.type];
+                for(var i= 0,len=listeners.length;i<len;i++){
+                    listeners[i].call(this,event);
+                }
+            }
+        },
+        removeListener:function(type,listener){
+            if(this._listeners&&this._listeners[type] instanceof Array){
+                var listeners=this._listeners[type];
+                for(var i= 0,len=listeners.length;i<len;i++){
+                    if(listeners[i] === listener){
+                        listeners.splice(i,1);
+                        break;
+                    }
+                }
+            }
+        }
+    };
+    var target=new EventTarget();
+    target.addListener('message',function(event){
+        console.log('Message is '+event.data);
+    });
+*/
+
+    function Person(name){
+        if(this instanceof Person){  //用了new
+            this.name=name;
+        }else{
+            return new Person(name);
+        }
+    }
+    var person1=new Person('Nicholas');
+    var person2=Person('Nicholas');
+    console.log(person1 instanceof Person);
+    console.log(person2 instanceof Person);
+</script>
+</html>

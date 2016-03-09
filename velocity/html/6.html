@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<!--<svg width="500" height="500">-->
+    <!--<circle cx="100" cy="100" r="30" style="fill:blue;"/>-->
+    <!--<rect id="rect" x="100" y="100" width="200" height="200" style="fill:green;stroke:red;stroke-width:5px;"/>-->
+<!--</svg>-->
+<svg width="500" height="500">
+    <circle id="circleLeft" cx="100" cy="100" r="30" style="fill:red;"/>
+    <circle id="circleRight" cx="100" cy="100" r="30" style="fill:orange;"/>
+</svg>
+</body>
+<script src="../js/jquery-1.9.1.min.js"></script>
+<script src="../js/velocity.min.js"></script>
+<script>
+//    $('circle').velocity({
+//        fill:'#ff0000',
+//        stroke:'#000',
+//        cx:200,
+//        r:50
+//    });
+    $('#circleLeft').velocity({
+        cx:'-=15px'
+    },{
+        easing:'spring'
+    });
+    $('#circleRight').velocity({
+        cx:'+=15px'
+    },{
+        easing:'spring'
+    });
+    $('svg').on('mouseover mouseout',function(){
+        $('#circleLeft,#circleRight').velocity('reverse');
+    });
+</script>
+</html>

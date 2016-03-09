@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .div{
+            height: 1000px;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="确定"/>
+<div id="div1" class="div" style="background: red;"></div>
+<div id="div2" class="div" style="background: yellow;"></div>
+<div id="div3" class="div" style="background: greenyellow;"></div>
+<div id="div4" class="div" style="background: purple;"></div>
+</body>
+<script src="../js/jquery-1.9.1.min.js"></script>
+<script src="../js/velocity.min.js"></script>
+<script>
+    $('input').on('click',function(){
+        var $div=$('.div').eq(3);
+        $div.velocity('scroll',{
+            easing:'spring'
+        }).velocity({
+            backgroundColor:'#000000'
+        },{
+            delay:1000,
+            duration:1000
+        });
+    });
+</script>
+</html>

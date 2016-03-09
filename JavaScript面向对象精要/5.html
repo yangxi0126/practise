@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+<script>
+//    var book={
+//        title:'test book'
+//    };
+//    var bookPrototype=Object.getPrototypeOf(book);
+//    console.log(bookPrototype === Object.prototype);
+
+//    Object.prototype.add=function(value){
+//        return this+value;
+//    };
+//    var book={
+//        title:'The test book'
+//    };
+//    console.log(book.add(5));  //隐式对象继承
+//    console.log('title'.add('end'));
+//    console.log(document.add(true));
+//    console.log(window.add(5));
+//    var empty={};
+//    for(var attr in empty){
+//        console.log(attr);
+//    }
+//    for(var attr in empty){
+//        if(empty.hasOwnProperty(attr)){  //最好用检测自有属性来检测对象是否存在一个属性
+//            console.log(attr);
+//        }
+//    }
+
+//    var person1={
+//        name:'Nicholas',
+//        sayName:function(){
+//            console.log(this.name);
+//        }
+//    };
+//    var person2=Object.create(person1,{
+//        name:{
+//            configurable:true,
+//            enumerable:true,
+//            value:'Greg',
+//            writable:true
+//        }
+//    });
+//    person1.sayName();
+//    person2.sayName();
+//    console.log(person1.hasOwnProperty('sayName'));
+//    console.log(person1.isPrototypeOf(person2));
+//    console.log(person2.hasOwnProperty('sayName'));
+
+//    function Rectangle(length,width){
+//        this.length=length;
+//        this.width=width;
+//    }
+//    Rectangle.prototype.getArea=function(){
+//        return this.length*this.width;
+//    };
+//    Rectangle.prototype.toString=function(){
+//        return '[Rectangle '+this.length+'x'+this.width+']';
+//    };
+//    function Square(size){
+//        this.length=size;
+//        this.width=size;
+//    }
+//    Square.prototype=new Rectangle();  //这是不需要给Rectangle任何参数：1.它们不需要被使用; 2.如果给了参数，那么所有实例化的Square对象都会拥有同样的参数了
+//    Square.prototype.constructor=Square;
+//    Square.prototype.toString=function(){
+//        return '[Square '+this.length+'x'+this.width+']';
+//    };
+//    var rect=new Rectangle(5,10);
+//    var square=new Square(6);
+//    console.log(rect.getArea());
+//    console.log(square.getArea());
+//    console.log(rect.toString());
+//    console.log(square.toString());
+//    console.log(rect instanceof Rectangle);
+//    console.log(rect instanceof Object);
+//    console.log(square instanceof Square);
+//    console.log(square instanceof Rectangle);
+//    console.log(square instanceof Object);
+
+    function Rectangle(length,width){
+        this.length=length;
+        this.width=width;
+    }
+    Rectangle.prototype.getArea=function(){
+        return this.length*this.width;
+    };
+    Rectangle.prototype.toString=function(){
+        return '[Rectangle '+this.length+'x'+this.width+']';
+    };
+    function Square(size){
+        Rectangle.call(this,size,size);
+    }
+    Square.prototype=Object.create(Rectangle.prototype,{
+        constructor:{
+            configurable:true,
+            enumerable:true,
+            value:Square,
+            writable:true
+        }
+    });
+    Square.prototype.toString=function(){
+        return '[Square '+this.length+'x'+this.width+']';
+    };
+    var square=new Square(6);
+    console.log(square.length);
+    console.log(square.width);
+    console.log(square.getArea());
+</script>
+</html>

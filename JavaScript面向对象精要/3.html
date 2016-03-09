@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+<script>
+//    var person1={
+//        name:'Nicholas',
+//        age:'0'
+//    };
+//    if(person1.age){
+//        console.log(1);
+//    }else{
+//        console.log(0);
+//    }
+//    if('age' in person1){
+//        console.log(1);
+//    }
+
+//    var person1={
+//        name:'Nicholas',
+//        sayName:function(){
+//            console.log(this.name);
+//        }
+//    };
+//    console.log('name' in person1);
+//    console.log(person1.hasOwnProperty('name'));
+//
+//    console.log('toString' in person1);
+//    console.log(person1.hasOwnProperty('toString'));
+
+//    var person1={
+//        name:'Nicholas'
+//    };
+//    console.log('name' in person1);
+//    delete person1.name;
+//    console.log('name' in  person1);
+//    console.log(person1.name);
+
+//    var person1={
+//        name:'Nicolas',
+//        age:20,
+//        job:'IT'
+//    };
+//    var properties=Object.keys(person1);
+//    console.log(properties);
+//    for(var i=0,len=properties.length;i<len;i++){
+//        console.log('Name: '+properties[i]);
+//        console.log('Value: '+person1[properties[i]]);
+//    }
+//    for(var attr in  person1){
+//        console.log(attr);
+//    }
+
+//    var person1={
+//        _name:'Nicholas',
+//        get name(){
+//            console.log('Reading name');
+//            return this._name;
+//        },
+//        set name(value){
+//            console.log('Setting name to %s',value);
+//            this._name=value;
+//        }
+//    };
+//    console.log(person1.name);
+//    person1.name='Greg';
+//    console.log(person1.name);
+////    Object.defineProperty(person1,'_name',{
+////        configurable:true
+////    });
+//    person1._name='123';
+//    console.log(person1._name);
+
+//    var person1={
+//        _name:'Nicolas'
+//    };
+//    Object.defineProperty(person1,'name',{
+//        get:function(){
+//            console.log('Reading name');
+//            return this._name;
+//        }
+////        set:function(value){
+////            console.log('Setting name to %s',value);
+////            this._name=value;
+////        }
+////        enumberable:true,
+////        configurable:true
+//    });
+//    console.log('name' in person1);
+//    console.log(person1.propertyIsEnumerable('name'));
+//    delete person1.name;
+//    console.log('name' in person1);
+//    person1.name='Greg';
+//    console.log(person1.name);
+
+//    var person1={};  //{}不能少写
+//    Object.defineProperties(person1,{
+//        _name:{
+//            value:'Nicholas',
+//            enumberable:true,
+//            configurable:true,
+//            writable:true
+//        }
+//    },{
+//        name:{
+//            get:function(){
+//                console.log('Reading name');
+//                return this._name;
+//            },
+//            set:function(value){
+//                console.log('Setting name to %s',value);
+//                this._name=value;
+//            },
+//            enumberable:true,
+//            configurable:true
+//        }
+//    });
+
+//    var person1={
+//        name:'Nicholas'
+//    };
+//    var descriptor=Object.getOwnPropertyDescriptor(person1,'name');
+//    console.log(descriptor.enumerable);
+//    console.log(descriptor.configurable);
+//    console.log(descriptor.writable);
+//    console.log(descriptor.value);
+
+    var person1={
+        name:'Nicholas'
+    };
+    console.log(Object.isExtensible(person1));
+    Object.preventExtensions(person1);
+    console.log(Object.isExtensible(person1));
+    person1.sayName=function(){
+        console.log(this.name);
+    };
+    console.log('sayName' in person1);
+</script>
+</html>

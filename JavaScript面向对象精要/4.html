@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+<script>
+//    function Person(){
+//
+//    }
+//    var person1=new Person();
+//    var person2=new Person();
+//    console.log(person1 instanceof Person);  //最好用instanceof来检查对象类型，因为构造函数属性constructor可以被覆盖
+//    console.log(person2 instanceof Person);
+//    console.log(person1.constructor === Person);
+//    console.log(person2.constructor === Person);
+
+//    function Person(name){
+//        this.name=name;
+//        this.sayName=function(){
+//            console.log(this.name);
+//        }
+//    }
+//    var person1=new Person('Nicholas');
+//    var person2=new Person('Greg');
+//    console.log(person1.name);
+//    console.log(person2.name);
+//    person1.sayName();
+//    person2.sayName();
+
+//    function Person(name){
+//        Object.defineProperty(this,'name',{
+//            get:function(){
+//                return name;
+//            },
+//            set:function(newName){
+//                name=newName;
+//            },
+//            enumerable:true,
+//            configurable:true
+//        });
+//        this.sayName=function(){
+//            console.log(this.name);
+//        };
+//    }
+//    var person1=Person('Nicholas');  //不用new时，函数没有返回语句，所以person1为undefined。此处的Nicolas相当于给全局变量name赋值。
+//    console.log(person1 instanceof Person);
+//    console.log(typeof person1);
+//    console.log(name);
+
+//    var book={
+//        title:'The Principles of Object-Oriented JavaScript'
+//    };
+////    console.log('title' in book);
+////    console.log(book.hasOwnProperty('title'));
+////    console.log('hasOwnProperty' in  book);
+////    console.log(book.hasOwnProperty('hasOwnProperty'));
+////    console.log(Object.prototype.hasOwnProperty('hasOwnProperty'));
+//    function hasPrototypeProperty(object,name){
+//        return name in object && !object.hasOwnProperty(name);
+//    }
+//    var test=hasPrototypeProperty(book,'title');
+//    console.log(test);
+
+//    var object={};
+//    console.log(object.toString());
+//    object.toString=function(){
+//        return '[Object Custom]';
+//    };
+//    console.log(object.toString());
+//    delete object.toString;
+//    console.log(object.toString());
+//    delete object.toString;
+//    console.log(object.toString());
+
+//    function Person(name){
+//        this.name=name;
+//    }
+//    Person.prototype.sayName=function(){
+//        console.log(this.name);
+//    };
+//    Person.prototype.favorites=[];
+//    var person1=new Person('Nicholas');
+//    var person2=new Person('Greg');
+//    person1.favorites.push('pizza');
+//    person2.favorites.push('quinoa');
+//    console.log(person1.favorites);
+//    console.log(person2.favorites);
+
+//    function Person(name){
+//        this.name=name;
+//    }
+//    Person.prototype={
+//        constructor:Person,  //不能少，不然会被指向Object
+//        sayName:function(){
+//            console.log(this.name);
+//        },
+//        toString:function(){
+//            return '[Person '+this.name+']';
+//        }
+//    };
+//    var person1=new Person('Nicholas');
+//    var person2=new Person('Greg');
+//    console.log(person1 instanceof Person);
+//    console.log(person1.constructor === Person);
+//    console.log(person1.constructor === Object);  //如果没有重定向，则这句话是对的
+//    console.log(person2 instanceof Person);
+//    console.log(person2.constructor === Person);
+//    console.log(person2.constructor === Object);
+
+    function Person(name){
+        this.name=name;
+    }
+    Person.prototype={
+        constructor:Person,
+        sayName:function(){
+            console.log(this.name);
+        },
+        toString:function(){
+            return '[Person '+this.name+']';
+        }
+    };
+    var person1=new Person('Nicholas');
+    var person2=new Person('Greg');
+    console.log('sayHi' in person1);
+    console.log('sayHi' in person2);
+    Person.prototype.sayHi=function(){
+        console.log('Hi');
+    };
+    person1.sayHi();
+    person2.sayHi();
+</script>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .alert-box{
+            width: 0;
+            height: 0;
+            overflow: hidden;
+            border: 1px solid #ddd;
+            border-right: 10px;
+            background: #d1d1d1;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: 999;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <button>开始</button>
+    <div class="alert-box">
+        <input type="button" value="确定"/>
+    </div>
+</body>
+<script src="../js/jquery-1.9.1.min.js"></script>
+<script src="../js/velocity.min.js"></script>
+<script>
+    $('button').on('click',function(){
+        var $div=$('.alert-box');
+        if(!$div.is(':visible')){
+            $div.velocity({
+                width:300,
+                height:150,
+                marginLeft: '-150px',
+                marginTop: '-75px'
+            },{
+                display:'block',
+                easing:'spring'
+            });
+        }
+    });
+    $('input').on('click',function(){
+        var $div=$('.alert-box');
+        $div.velocity('reverse',{duration:20,display:'none'});
+    });
+</script>
+</html>
