@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #main{
+            width: 500px;
+            height: 300px;
+            border: 1px solid red;
+            margin: 100px auto;
+            overflow: hidden;
+            position: relative;
+        }
+        #main>div{
+            position: absolute;
+            width: 100px;
+            height: 300px;
+            top: 0;
+        }
+        .left{
+            left: -200px;
+            background: red;
+            opacity: 1;
+        }
+        .right{
+            right: -200px;
+            background: blue;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+<div id="main">
+    <div class="left"></div>
+    <div class="left"></div>
+    <div class="left"></div>
+    <div class="left"></div>
+    <div class="left"></div>
+    <div class="right"></div>
+    <div class="right"></div>
+    <div class="right"></div>
+    <div class="right"></div>
+    <div class="right"></div>
+</div>
+<button>左</button>
+<button>右</button>
+</body>
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="js/jquery.easing.js"></script>
+<script src="js/jquery.easing.compatibility.js"></script>
+<script>
+    $('button').eq(0).on('click',function(){
+        var $left=$('.left');
+        var $right=$('.right');
+        if(!$left.is(':animated')){
+            for(var i=0;i<$left.length;i++){
+                $right.eq(i).animate({
+                    right:'-200px',
+                    opacity:0
+                },{
+                    easing:'swing',
+                    duration:1000
+                });
+                $left.eq(i).delay(i*200).animate({
+                    left:($left.length-1-i)*100+'px',
+                    opacity:1
+                },{
+                    easing:'bounceout',
+                    duration:1000
+                });
+            }
+        }
+    });
+    $('button').eq(1).on('click',function(){
+        var $left=$('.left');
+        var $right=$('.right');
+        if(!$right.is(':animated')){
+            for(var i=0;i<$right.length;i++){
+                $left.eq(i).animate({
+                    left:'-200px',
+                    opacity:0
+                },{
+                    easing:'swing',
+                    duration:1000
+                });
+                $right.eq(i).delay(i*200).animate({
+                    right:($right.length-1-i)*100+'px',
+                    opacity:1
+                },{
+                    easing:'bounceout',
+                    duration:1000
+                });
+            }
+        }
+    });
+</script>
+</html>

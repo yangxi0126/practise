@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            background: red;
+        }
+        #box1{
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 0;
+            left: -100px;
+        }
+        .alert-box{
+            position: absolute;
+            width: 0;
+            height: 0;
+            z-index: 9999;
+            top: 50%;
+            left: 50%;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<div id="box1"></div>
+<div class="alert-box">
+    <input type="button" value="点击"/>
+</div>
+<button>点击</button>
+</body>
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="js/jquery.easing.js"></script>
+<script src="js/jquery.easing.compatibility.js"></script>
+<script>
+    $('#box1').animate({
+        left:'500px'
+    },{
+        easing:'bounceout',
+        duration:'3000',
+        complete:function(){
+            $(this).css({
+                background:'blue'
+            });
+        }
+    });
+    $('button').on('click',function(){
+        var $div=$('.alert-box');
+        if(!$div.is(':visible')){
+            $div.animate({
+                width:'300px',
+                height:'200px',
+                marginLeft:'-150px',
+                marginTop:'-100px'
+            },{
+                easing:'bounceout'
+            });
+        }
+    });
+    $('input').on('click',function(){
+        var $div=$('.alert-box');
+        $div.animate({
+            width:'0px',
+            height:'0px',
+            marginLeft:'-0px',
+            marginTop:'-0px'
+        },{
+            easing:'swing',
+            duration:0
+        });
+    });
+</script>
+</html>
